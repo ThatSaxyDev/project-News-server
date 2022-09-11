@@ -26,6 +26,11 @@ const userSchema = mongoose.Schema({
         type: String,
         trim: true,
       },
+      type: {
+        required: true,
+        type: String,
+        trim: true,
+      },
       // favorite: {}
 })
 
