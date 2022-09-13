@@ -1,26 +1,30 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-
-// imports from other files
 const authRouter = require('./routes/auth')
+const adminRouter = require('./routes/admin')
+const newsRouter = require('./routes/news')
 
 const PORT = 3000
 const app = express()
 const DB = 'mongodb+srv://kiishi:floSic1999100@cluster0.mdy4vqt.mongodb.net/?retryWrites=true&w=majority'
 
+const corsOption = {
+  // origin: ["*", "http://localhost:3000", "http://localhost:5500", "https://buattendancemanagementsystem.herokuapp.com"],
+  origin: ["http://localhost:3000", "http://localhost:5500"],
+  credentials: true,
+  optionSuccessStatus: 200,
+  methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+};
+
 // middlewares
+app.use(cors(corsOption));
 app.use(express.json())
 app.use(authRouter)
-app.use(cors({
-  origin: '*',
-}))
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.use(adminRouter)
+app.use(newsRouter)
+
+
 
 // connection
 mongoose
