@@ -4,6 +4,7 @@ const cors = require('cors')
 const authRouter = require('./routes/auth')
 const adminRouter = require('./routes/admin')
 const newsRouter = require('./routes/news')
+const userRouter = require('./routes/user')
 
 const PORT = 3000
 const app = express()
@@ -23,7 +24,7 @@ app.use(express.json())
 app.use(authRouter)
 app.use(adminRouter)
 app.use(newsRouter)
-
+app.use(userRouter)
 
 
 // connection

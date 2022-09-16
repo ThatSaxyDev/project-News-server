@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { newsSchema } = require('./news')
 
 const userSchema = mongoose.Schema({
     name: {
@@ -31,7 +32,15 @@ const userSchema = mongoose.Schema({
         type: String,
         trim: true,
       },
-      // favorite: {}
+      bookmarks: [
+        {
+          news: newsSchema,
+          quantity: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
 })
 
 const User = mongoose.model('User', userSchema)

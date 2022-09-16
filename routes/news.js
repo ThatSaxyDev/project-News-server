@@ -1,7 +1,7 @@
 const express = require('express')
 const newsRouter = express.Router()
 const auth = require('../middleware/auth')
-const News = require('../models/news')
+const { News } = require('../models/news')
 
 // get all news
 newsRouter.get('/api/news', auth, async (req, res) => {
@@ -12,5 +12,7 @@ newsRouter.get('/api/news', auth, async (req, res) => {
       res.status(500).json({ error: e.message })
     }
   })
+
+
 
 module.exports = newsRouter

@@ -18,4 +18,14 @@ adminRouter.post('/admin/upload-news', admin, async (req, res) => {
     }
 })
 
+// get all news
+adminRouter.get('/admin/get-news', admin, async (req, res) => {
+    try {
+        const news = await News.find({})
+        res.json(news)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+})
+
 module.exports = adminRouter
