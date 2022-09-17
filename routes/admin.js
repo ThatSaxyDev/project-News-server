@@ -2,7 +2,7 @@ const express = require('express')
 const adminRouter = express.Router()
 const { model } = require('mongoose')
 const admin = require('../middleware/admin')
-const News = require('../models/news')
+const { News } = require('../models/news')
 
 // upload news
 adminRouter.post('/admin/upload-news', admin, async (req, res) => {
