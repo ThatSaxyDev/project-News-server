@@ -15,10 +15,22 @@ userRouter.post('/api/add-to-bookmarks', auth, async (req, res) => {
         if (user.bookmarks.length == 0) {
             user.bookmarks.push({ news, quantity: 1 })
         } else {
+            let isNewsFound = false
             for (let i = 0; i < user.bookmarks.length; i++) {
-                user.bookmarks[i].news._id.equals(news._id)
+                if (user.bookmarks[i].news._id.equals(news._id)) {
+                    isNewsFound = true
+                }
             }
 
+            if (isNewsFound) {
+                let newss = user.bookmarks.find((newss) =>
+                    newss.news._id.equals(news._id),
+                )
+                newss.quantity == 1
+            } 
+            else {
+                user.bookmarks.push({ news, quantity: 1 })
+            }
         }
 
         user = await user.save()
